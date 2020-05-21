@@ -1,0 +1,49 @@
+
+-- Controll Flow
+
+if !: !Bool -> !a -> !a -> !a
+if = L C (True  -> L (a -> L (b -> a)))
+       C (False -> L (a -> L (b -> b)))
+
+-- Maths
+
+pred !: !Int -> !Int
+pred = L (a -> Sub a 1)
+
+pow !: !Int -> !Int -> !Int
+pow = L (a -> L C (0 -> 1)
+                C (n -> Mul a (pow a (pred n))))
+
+fac !: !Int -> !Int
+fac = L C (0 -> 1)
+        C (n -> (Mul n (fac (pred n))))
+
+-- Tuple Help Functions
+
+pair !: !a -> !b -> (!a, !b)
+pair = L (a -> L (b -> (a, b)))
+
+fst !: (!a, !b) -> !a
+fst = L ((a, b) -> a)
+
+snd !: (!a, !b) -> !b
+snd = L ((a, b) -> b)
+
+map !: (!a -> !b) -> (!a, !a) -> (!b, !b)
+map = L (f -> L ((a, b) -> (f a, f b)))
+
+-- Location Help Functions
+
+locPlus !: (!Int, !Int) -> (!Int, !Int) -> (!Int, !Int)
+locPlus = L ((a0, a1) -> L ((b0, b1) -> (Add a0 b0, Add a1 b1)))
+
+locDiv  !: (!Int, !Int) -> (!Int, !Int) -> (!Int, !Int)
+locDiv  = L ((a0, a1) -> L ((b0, b1) -> (Sub a0 b0, Sub a1 b1)))
+
+locEqual !: (!Int, !Int) -> (!Int, !Int) -> !Bool
+locEqual = L ((a0, a1) -> L ((b0, b1) -> And (Eq a0 b0) (Eq a1 b1)))
+
+
+
+
+

@@ -1,0 +1,3 @@
+
+main !: (!Int | !Bool)
+main = LL 23

@@ -1,0 +1,6 @@
+
+
+!Enum = red | black
+
+main !: !Enum
+main = red

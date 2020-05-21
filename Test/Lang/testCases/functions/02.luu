@@ -1,0 +1,15 @@
+
+!Tuple = d1 | d2 | d3
+
+tToInt !: !Tuple -> !Int
+tToInt = L C (d1 -> 1)
+           C (d2 -> 2)
+           C (d3 -> 3)
+
+if !: !Bool -> !a -> !a -> !a
+if = L C (True  -> L (a -> L (b -> a)))
+       C (False -> L (a -> L (b -> b)))
+
+main !: !Int
+main = tToInt d3
+

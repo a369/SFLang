@@ -1,0 +1,12 @@
+
+
+if !: !Bool -> !a -> !a -> !a
+if = L C (True  -> L (a -> L (b -> a)))
+       C (False -> L (a -> L (b -> b)))
+
+lowest !: !Int -> !Int -> !Int
+lowest = L (a -> L (b -> if (Lt a b) a b))
+
+main !: !Int
+main = lowest 4 9
+
