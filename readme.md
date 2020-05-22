@@ -1,5 +1,6 @@
 ## The project
 
+This code was part of a group-project for Advanced Function Programming at Utrecht University, but all the code and text was programmed and written by me. 
 
 ## Components of the compiler
 __The Linker__ is capable of importing multiple files from the main file, importing files from imported files, importing one file from multiple files, and culling the imported environment so you can only access binds from imported files (and not from files imported by imported files) . The Linker resolves all dependencies and if there are no import cycles and there is a main file it returns an evaluation order. This order is propagated with the LinkState Monad  through the entire compilation stack. 
