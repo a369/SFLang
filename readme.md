@@ -76,7 +76,10 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
     
     Import :=
     "--" "#import" FilePath [ "," FilePath ]*
-    Note: This should be the first line of a program (so no newlines before the import statement), second the file path should be relative from where the compiler is running and should not contain a ".luu" extension (the file itself sould).
+    Note: 
+    This should be the first line of a program (so no newlines before the import statement), 
+    second the file path should be relative from where the compiler is running 
+    and should not contain a ".luu" extension (the file itself sould).
     
     
     Build in functions (not infix)
