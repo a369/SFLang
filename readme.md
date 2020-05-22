@@ -38,44 +38,41 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
     
     Bind  := EnumDeclaration | GlobalConstant
     
-    EnumDeclaration :=
-    "\n""!"CID "=" LID [ "|" LID ]*
+    EnumDeclaration := "\n""!"CID "=" LID [ "|" LID ]*
     
-    GlobalConstant :=
+    GlobalConstant :=                    -- Can be values or functions
     "\n"LID "!:" Type
     "\n"LID "=" Exp
     
-    Type := "!"CID                             -- Rigid type (Int, Bool or enum)
-                | "!"LID                       -- Type variable
-                | "(" Type ")"  
-                | Type "->" Type  
-                | "(" Type "," Type ")"  
-                | Type "|" Type
+    Type := "!"CID                       -- Rigid type (Int, Bool or enum)
+          | "!"LID                       -- Type variable
+          | "(" Type ")"  
+          | Type "->" Type  
+          | "(" Type "," Type ")"  
+          | Type "|" Type
     
-    Exp :=      CID                            -- Built in functions
-              | LID                            -- Variables and enum values
-              | Bool
-              | Int
-              | Exp Exp                        -- Apply  
-              | Lambda
-              | "(" Exp "," Exp ")"
+    Exp := CID                            -- Built in functions
+         | LID                            -- Variables and enum values
+         | Bool
+         | Int
+         | Exp Exp                        -- Apply  
+         | Lambda
+         | "(" Exp "," Exp ")"
     
     Lambda := "L" "(" Pattern "->" Exp ")"
             | "L" [ "C" "(" Pattern "->" Exp ")" ]+
     
-    Pattern := LID
-                      | Bool
-                      | Int
-                      | "LL" Pattern
-                      | "RR" Pattern
-                      | "(" Pattern "," Pattern ")"
-                      | "(" Pattern ")"
+    Pattern := LID                        -- binds value to LID
+             | Bool
+             | Int
+             | "LL" Pattern
+             | "RR" Pattern
+             | "(" Pattern "," Pattern ")"
+             | "(" Pattern ")"
     
-    Comments :=
-    "--" anything "\n"
+    Comments := "--" anything "\n"
     
-    Import :=
-    "--" "#import" FilePath [ "," FilePath ]*
+    Import := "--" "#import" FilePath [ "," FilePath ]*
     Note: 
     This should be the first line of a program (so no newlines before the import statement), 
     second the file path should be relative from where the compiler is running 
