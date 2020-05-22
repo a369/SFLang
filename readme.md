@@ -13,7 +13,7 @@ __The Type-Checker__ is based on lessons learned from Concepts of Program Design
 __The Evaluator__ uses a State Monad with an environment to string global and local scope through the evaluation process, so a very straightforward evaluator.
 The entire stack is built with an "Either GlobalError a" monad to handle errors in any part of the compilation process. 
 
-## Features 
+## Syntax 
 
 
 A program in LambdaUU (luu) consists of a list of Binds separated by newlines. The file you give the compiler should contain a main Bind, any imported files don't need a main bind. You can only call variables that have been bound before use.
