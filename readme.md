@@ -20,7 +20,7 @@ A program in LambdaUU (luu) consists of a list of Binds separated by newlines. T
 
 Indentation (a newline followed by whitespace) will be seen as continuation of the previous line.
 
-    "A " := The string A
+    "A" := The string A
     
     a | b := Either a or b
     
@@ -32,26 +32,26 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
     
     LID := A lowercase letter followed by 0 or more alpha num.
     
-    Bool :=  "True " |  "False "
+    Bool :=  "True" |  "False"
     
-    Int   :=  "0 " |  "1 " |  "-1 " |  "2 " |  "-2 " | ...
+    Int   :=  "0" |  "1" |  "-1" |  "2" |  "-2" | ...
     
     Bind := EnumDeclaration  
                 | GlobalConstant
     
     EnumDeclaration :=
-     "\n " "! "CID  "= " LID [  "| " LID ]*
+     "\n" "!"CID  "=" LID [  "|" LID ]*
     
     GlobalConstant :=
-     "\n "LID  "!: " Type
-     "\n "LID  "= " Exp
+     "\n"LID  "!:" Type
+     "\n"LID  "=" Exp
     
-    Type :=  "! "CID                      -- Rigid type (Int, Bool or enum)
-                |  "! "LID                      -- Type variable
-                |  "( " Type  ") "  
-                | Type  "-> " Type  
-                |  "( " Type  ", " Type  ") "  
-                | Type  "| " Type
+    Type :=  "!"CID                      -- Rigid type (Int, Bool or enum)
+                |  "!"LID                      -- Type variable
+                |  "( " Type  ")"  
+                | Type  "->" Type  
+                |  "( " Type  "," Type  ")"  
+                | Type  "|" Type
     
     Exp := CID                            -- Built in functions
               | LID                            -- Variables and enum values
@@ -59,25 +59,25 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
               | Int
               | Exp Exp                      -- Apply  
               | Lambda
-              |  "( " Exp  ", " Exp  ") "
+              |  "( " Exp  "," Exp  ")"
     
-    Lambda :=  "L "  "( " Pattern  "-> " Exp  ") "
-                    | [  "L "  "C "  "( " Pattern  "-> " Exp  ") " ]+
+    Lambda :=  "L"  "( " Pattern  "->" Exp  ")"
+                    | [  "L"  "C"  "( " Pattern  "->" Exp  ")" ]+
     
     Pattern := LID
                       | Bool
                       | Int
-                      |  "LL " Pattern
-                      |  "RR " Pattern
-                      |  "( " Pattern  ", " Pattern  ") "
-                      |  "( " Pattern  ") "
+                      |  "LL" Pattern
+                      |  "RR" Pattern
+                      |  "( " Pattern  "," Pattern  ")"
+                      |  "( " Pattern  ")"
     
     Comments :=
-     "-- " anything  "\n "
+     "--" anything  "\n"
     
     Import :=
-     "-- "  "#import " FilePath [  ", " FilePath ]*
-    Note: This should be the first line of a program (so no newlines before the import statement), second the file     path should be relative from where the compiler is running and should not contain a  ".luu " extension (the file     itself sould).
+     "--"  "#import" FilePath [  "," FilePath ]*
+    Note: This should be the first line of a program (so no newlines before the import statement), second the file     path should be relative from where the compiler is running and should not contain a  ".luu" extension (the file     itself sould).
     
     
     Build in functions (not infix)
