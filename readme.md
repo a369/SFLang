@@ -62,7 +62,7 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
     Lambda := "L" "(" Pattern "->" Exp ")"
             | "L" [ "C" "(" Pattern "->" Exp ")" ]+
     
-    Pattern := LID                        -- binds value to LID
+    Pattern := LID                        -- Binds value to LID
              | Bool
              | Int
              | "LL" Pattern
@@ -80,20 +80,20 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
     
     
     Build in functions (not infix)
-    +     := Add  !: !Int  -> !Int  -> !Int
-    -     := Sub  !: !Int  -> !Int  -> !Int
-    *     := Mul  !: !Int  -> !Int  -> !Int
-    /     := Quot !: !Int  -> !Int  -> !Int
-    >     := Gt   !: !Int  -> !Int  -> !Bool
-    >=    := Ge   !: !Int  -> !Int  -> !Bool
-    <     := Lt   !: !Int  -> !Int  -> !Bool
-    <=    := Le   !: !Int  -> !Int  -> !Bool
-    ==    := Eq   !: !Int  -> !Int  -> !Bool
-    !     := Not  !: !Bool -> !Bool
-    &&    := And  !: !Bool -> !Bool -> !Bool
-    ||    := Or   !: !Bool -> !Bool -> !Bool
-    Left  := LL   !: !a    -> (!a | !b)
-    Right := RR   !: !b    -> (!a | !b)
+    +     := Add  -- !: !Int  -> !Int  -> !Int
+    -     := Sub  -- !: !Int  -> !Int  -> !Int
+    *     := Mul  -- !: !Int  -> !Int  -> !Int
+    /     := Quot -- !: !Int  -> !Int  -> !Int
+    >     := Gt   -- !: !Int  -> !Int  -> !Bool
+    >=    := Ge   -- !: !Int  -> !Int  -> !Bool
+    <     := Lt   -- !: !Int  -> !Int  -> !Bool
+    <=    := Le   -- !: !Int  -> !Int  -> !Bool
+    ==    := Eq   -- !: !Int  -> !Int  -> !Bool
+    !     := Not  -- !: !Bool -> !Bool
+    &&    := And  -- !: !Bool -> !Bool -> !Bool
+    ||    := Or   -- !: !Bool -> !Bool -> !Bool
+    Left  := LL   -- !: !a    -> (!a | !b)
+    Right := RR   -- !: !b    -> (!a | !b)
     
     Examples:
     -- #import code/something, code/somethingElse
