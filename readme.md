@@ -20,97 +20,96 @@ A program in LambdaUU (luu) consists of a list of Binds separated by newlines. T
 
 Indentation (a newline followed by whitespace) will be seen as continuation of the previous line.
 
-    "A" := The string A
+    "A"   := The string A
     
     a | b := Either a or b
     
-    [a]* := 0 or more a
+    [a]*  := 0 or more a
     
-    [a]+ := 1 or more a
+    [a]+  := 1 or more a
     
-    CID := An uppercase letter followed by 0 or more alpha num.
+    CID   := An uppercase letter followed by 0 or more alpha num.
     
-    LID := A lowercase letter followed by 0 or more alpha num.
+    LID   := A lowercase letter followed by 0 or more alpha num.
     
-    Bool :=  "True" |  "False"
+    Bool  := "True" | "False"
     
-    Int   :=  "0" |  "1" |  "-1" |  "2" |  "-2" | ...
+    Int   := "0" | "1" | "-1" | "2" | "-2" | ...
     
-    Bind := EnumDeclaration  
-                | GlobalConstant
+    Bind  := EnumDeclaration | GlobalConstant
     
     EnumDeclaration :=
-     "\n" "!"CID  "=" LID [  "|" LID ]*
+    "\n""!"CID "=" LID [ "|" LID ]*
     
     GlobalConstant :=
-     "\n"LID  "!:" Type
-     "\n"LID  "=" Exp
+    "\n"LID "!:" Type
+    "\n"LID "=" Exp
     
-    Type :=  "!"CID                      -- Rigid type (Int, Bool or enum)
-                |  "!"LID                      -- Type variable
-                |  "( " Type  ")"  
-                | Type  "->" Type  
-                |  "( " Type  "," Type  ")"  
-                | Type  "|" Type
+    Type := "!"CID                            -- Rigid type (Int, Bool or enum)
+                | "!"LID                      -- Type variable
+                | "(" Type ")"  
+                | Type "->" Type  
+                | "(" Type "," Type ")"  
+                | Type "|" Type
     
-    Exp := CID                            -- Built in functions
+    Exp :=      CID                            -- Built in functions
               | LID                            -- Variables and enum values
               | Bool
               | Int
-              | Exp Exp                      -- Apply  
+              | Exp Exp                        -- Apply  
               | Lambda
-              |  "( " Exp  "," Exp  ")"
+              | "(" Exp "," Exp ")"
     
-    Lambda :=  "L"  "( " Pattern  "->" Exp  ")"
-                    | [  "L"  "C"  "( " Pattern  "->" Exp  ")" ]+
+    Lambda := "L" "(" Pattern "->" Exp ")"
+            | [ "L" "C" "(" Pattern "->" Exp ")" ]+
     
     Pattern := LID
                       | Bool
                       | Int
-                      |  "LL" Pattern
-                      |  "RR" Pattern
-                      |  "( " Pattern  "," Pattern  ")"
-                      |  "( " Pattern  ")"
+                      | "LL" Pattern
+                      | "RR" Pattern
+                      | "(" Pattern "," Pattern ")"
+                      | "(" Pattern ")"
     
     Comments :=
-     "--" anything  "\n"
+    "--" anything "\n"
     
     Import :=
-     "--"  "#import" FilePath [  "," FilePath ]*
-    Note: This should be the first line of a program (so no newlines before the import statement), second the file     path should be relative from where the compiler is running and should not contain a  ".luu" extension (the file     itself sould).
+    "--" "#import" FilePath [ "," FilePath ]*
+    Note: This should be the first line of a program (so no newlines before the import statement), second the file path should be relative from where the compiler is running and should not contain a ".luu" extension (the file itself sould).
     
     
     Build in functions (not infix)
-    + := Add !: !Int -> !Int -> !Int
-    - := Sub !: !Int -> !Int -> !Int
-    * := Mul !: !Int -> !Int -> !Int
-    / := Quot !: !Int -> !Int -> !Int
-    > := Gt !: !Int -> !Int -> !Bool
-    >= := Ge !: !Int -> !Int -> !Bool
-    < := Lt !: !Int -> !Int -> !Bool
-    <= :=  Le !: !Int -> !Int -> !Bool
-    == := Eq !: !Int -> !Int -> !Bool
-    ! := Not !: !Bool -> !Bool
-    && := And !: !Bool -> !Bool -> !Bool
-    || := Or !: !Bool -> !Bool -> !Bool
-    Left := LL !: !a -> (!a | !b)
-    Right := RR !: !b -> (!a | !b)
+    +     := Add  !: !Int  -> !Int  -> !Int
+    -     := Sub  !: !Int  -> !Int  -> !Int
+    *     := Mul  !: !Int  -> !Int  -> !Int
+    /     := Quot !: !Int  -> !Int  -> !Int
+    >     := Gt   !: !Int  -> !Int  -> !Bool
+    >=    := Ge   !: !Int  -> !Int  -> !Bool
+    <     := Lt   !: !Int  -> !Int  -> !Bool
+    <=    := Le   !: !Int  -> !Int  -> !Bool
+    ==    := Eq   !: !Int  -> !Int  -> !Bool
+    !     := Not  !: !Bool -> !Bool
+    &&    := And  !: !Bool -> !Bool -> !Bool
+    ||    := Or   !: !Bool -> !Bool -> !Bool
+    Left  := LL   !: !a    -> (!a | !b)
+    Right := RR   !: !b    -> (!a | !b)
     
     Examples:
     -- #import code/something, code/somethingElse
     
     if !: !Bool -> !a -> !a -> !a
     if = L C (True   -> L (a -> L (b -> a)))
-                  C (False -> L (a -> L (b -> b)))
+           C (False  -> L (a -> L (b -> b)))
     
     pred !: !Int -> !Int
     pred = L (a -> Sub a 1)
     
     pow !: !Int -> !Int -> !Int
     pow = L (a -> L C (0 -> 1)
-                                    C (n -> Mul a (pow a (pred n))))
+                    C (n -> Mul a (pow a (pred n))))
     
     fac !: !Int -> !Int
     fac = L C (0 -> 1)
-                    C (n -> (Mul n (fac (pred n))))
+            C (n -> (Mul n (fac (pred n))))
     
