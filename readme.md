@@ -8,10 +8,26 @@ __The Tokenizer__ is built with the parsec library, it is very basic and simplif
 
 __The Lexer__ builds a program data structure from the tokens again with the parsec library. It's feature set is minimal for example it does not support infix operators.
 
-__The Type-Checker__ is based on lessons learned from Concepts of Program Design but improved with a StateT Monad transformer. We first tried making it purely bottom up without substitution or unification but this did not work out because of recursion. 
+__The Type-Checker__ is based on lessons learned from Concepts of Program Design but improved with a StateT Monad transformer. I first tried making it purely bottom up without substitution or unification but this did not work out because of recursion. 
 
 __The Evaluator__ uses a State Monad with an environment to string global and local scope through the evaluation process, so a very straightforward evaluator.
 The entire stack is built with an "Either GlobalError a" monad to handle errors in any part of the compilation process. 
+
+## Features
+
+ * Basic types: Int, Bool, Enum, Lambda, Tuple, and Sum Type
+ * Type system that checks every expression
+ * Recursion
+ * First class functions 
+ * Simple polymorphism
+ * Pattern matching 
+ * Linker that allows multi file programs 
+
+### Missing Features
+
+ * Infix operators
+ * Recursive data types
+ * Syntactic sugar (let, func)
 
 ## Syntax 
 
