@@ -1,4 +1,4 @@
-module Tests.Lang.Main where
+module Main where
 
 --
 -- Small test program for the game language
@@ -17,7 +17,7 @@ folders = ["simpleTypes", "functions", "linker"]
 
 main :: IO ()
 main = do
-    let path = "Test/Lang/testCases/"
+    let path = "src/Test/Lang/testCases/"
     files <- foldM (\b a -> do
         gdc <- getDirectoryContents (path ++ a)
         let gdc' = map (\s -> path ++ a ++ "/" ++ s) gdc

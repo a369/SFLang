@@ -1,0 +1,6 @@
+-- #import src/Test/Lang/testCases/linker/importFrom/std
+
+
+main !: !Int
+main = pow 3 10
+
