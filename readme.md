@@ -45,8 +45,8 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
     "\n"LID "!:" Type
     "\n"LID "=" Exp
     
-    Type := "!"CID                            -- Rigid type (Int, Bool or enum)
-                | "!"LID                      -- Type variable
+    Type := "!"CID                             -- Rigid type (Int, Bool or enum)
+                | "!"LID                       -- Type variable
                 | "(" Type ")"  
                 | Type "->" Type  
                 | "(" Type "," Type ")"  
@@ -61,7 +61,7 @@ Indentation (a newline followed by whitespace) will be seen as continuation of t
               | "(" Exp "," Exp ")"
     
     Lambda := "L" "(" Pattern "->" Exp ")"
-            | [ "L" "C" "(" Pattern "->" Exp ")" ]+
+            | "L" [ "C" "(" Pattern "->" Exp ")" ]+
     
     Pattern := LID
                       | Bool
