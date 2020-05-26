@@ -1,13 +1,13 @@
 ## The project
 
-This code was part of a group-project for Advanced Function Programming at Utrecht University, but all the code and text was programmed and written by me. 
+This code was part of a group-project for Advanced Function Programming at Utrecht University, the uploaded code and text was programmed and written by me. 
 
 ## Components of the compiler
-__The Linker__ is capable of importing multiple files from the main file, importing files from imported files, importing one file from multiple files, and culling the imported environment so you can only access binds from imported files (and not from files imported by imported files) . The Linker resolves all dependencies and if there are no import cycles and there is a main file it returns an evaluation order. This order is propagated with the LinkState Monad  through the entire compilation stack. 
+__The Linker__ is capable of importing multiple files from a main file, importing files from imported files, importing one file from multiple files, and culling the imported environment so you can only access binds from imported files (and not from files imported by imported files) . The Linker resolves all dependencies and if there are no import cycles and there is a main file it returns an evaluation order. This order is propagated with the LinkState Monad  through the entire compilation stack. 
 
 __The Tokenizer__ is built with the parsec library, it is very basic and simplified by having most tokens start with a unique symbol (much like the $-symbol in PHP).
 
-__The Lexer__ builds a program data structure from the tokens again with the parsec library. It's feature set is minimal for example it does not support infix operators.
+__The Lexer__ builds a program data structure from the tokens again with the parsec library. It's feature set is minimal, for example it does not support infix operators.
 
 __The Type-Checker__ is based on lessons learned from Concepts of Program Design but improved with a StateT Monad transformer. I first tried making it purely bottom up without substitution or unification but this did not work out because of recursion. 
 
